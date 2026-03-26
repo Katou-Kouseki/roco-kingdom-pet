@@ -1,12 +1,17 @@
 <!DOCTYPE html>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>洛克王国宠物图鉴</title>
-<link rel="stylesheet" href="style.css">
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>洛克王国宠物图鉴</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
 <script src="data/config.js"></script>
 <script src="data/pets1.js"></script>
 <script src="data/pets2.js"></script>
+<script src="data/pets3.js"></script>
 
 <div class="page-container">
   <div class="title-center"><h1>洛克王国宠物图鉴</h1></div>
@@ -15,7 +20,7 @@
 </div>
 
 <script>
-const petList = [...petList1, ...petList2];
+const petList = [...petList1, ...petList2, ...petList3];
 renderFilters();
 renderPets(petList);
 
@@ -59,8 +64,8 @@ function renderPets(pets) {
     <h3>${pet.name}</h3>
     <div style="display:flex;gap:4px;justify-content:center;margin-top:6px;flex-wrap:wrap">
       ${elems.map(e => `
-      <span class="element" style="background:#fff; border:1px solid ${elementColors[e]}; color:#333; display:inline-flex; align-items:center; gap:4px;">
-        <img src="public/icons/${e}.png" class="element-icon" style="width:14px; height:14px; object-fit:contain;">
+      <span class="element" style="background:#f8f8f8; border:2px solid ${elementColors[e]}; color:#0e0e0e; display:inline-flex; align-items:center; gap:4px;">
+        <img src="public/icons/${e}.png" class="element-icon" ">
         ${e}
       </span>
       `).join('')}
@@ -80,3 +85,5 @@ function filterPets(type) {
   renderPets(filtered);
 }
 </script>
+</body>
+</html>

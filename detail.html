@@ -1,12 +1,17 @@
 <!DOCTYPE html>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>宠物详情</title>
-<link rel="stylesheet" href="style.css">
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>宠物详情</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
 <script src="data/config.js"></script>
 <script src="data/pets1.js"></script>
 <script src="data/pets2.js"></script>
+<script src="data/pets3.js"></script>
 
 <div class="page-container">
   <button class="back-btn" onclick="history.back()">← 返回图鉴</button>
@@ -14,7 +19,7 @@
 </div>
 
 <script>
-const petList = [...petList1, ...petList2];
+const petList = [...petList1, ...petList2, ...petList3];
 const params = new URLSearchParams(location.search);
 const id = parseInt(params.get("id"));
 const pet = petList.find(p => p.id === id);
@@ -31,9 +36,10 @@ if (pet) {
         </div>
         <div class="name-row">
           <h2 class="pet-name">${pet.name}</h2>
-          ${elems.map(e => `
-            <span class="element" style="background:${elementColors[e]}">
-            <img src="public/icons/${e}.png" class="element-icon">${e}
+            ${elems.map(e => `
+            <span class="element" style="background:#1a1a1d; border:2px solid ${elementColors[e]}; color:#e0e0e0; display:inline-flex; align-items:center; gap:4px;">
+              <img src="public/icons/${e}.png" class="element-icon" ">
+              ${e}
             </span>
             `).join('')}
         </div>
@@ -76,3 +82,5 @@ if (pet) {
   document.getElementById("detailArea").innerHTML = "<h2>宠物不存在</h2>";
 }
 </script>
+</body>
+</html>

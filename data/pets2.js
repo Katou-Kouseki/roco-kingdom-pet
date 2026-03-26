@@ -6,39 +6,47 @@ const petList2 = [
     },
     {id:12,name:"板板壳",element:"水",
         avatar:"/public/images/板板壳立绘.png",
-        hp:106,atk:96,mat:96,def:94,mdf:99,spd:55
+        hp:106,atk:96,mat:96,def:94,mdf:99,spd:55,
+        trait:{name:"水特性",desc:"水系效果"}
     },
     {id:13,name:"咔咔壳",element:"水",
         avatar:"/public/images/咔咔壳立绘.png",
-        hp:106,atk:96,mat:96,def:94,mdf:99,spd:55
+        hp:106,atk:96,mat:96,def:94,mdf:99,spd:55,
+        trait:{name:"水特性",desc:"水系效果"}
     },
     {id:14,name:"水泡壳",element:"水",
         avatar:"/public/images/水泡壳立绘.png",
-        hp:106,atk:96,mat:96,def:94,mdf:99,spd:55
+        hp:106,atk:96,mat:96,def:94,mdf:99,spd:55,
+        trait:{name:"水特性",desc:"水系效果"}
     },
     {id:15,name:"锥尾羊",element:"幽",
         avatar:"/public/images/锥尾羊立绘.png",
-        hp:106,atk:96,mat:96,def:94,mdf:99,spd:55
+        hp:106,atk:96,mat:96,def:94,mdf:99,spd:55,
+        trait:{name:"幽特性",desc:"幽系效果"}
     },
     {id:16,name:"铃兰羊",element:"幽",
         avatar:"/public/images/铃兰羊立绘.png",
-        hp:106,atk:96,mat:96,def:94,mdf:99,spd:55
+        hp:106,atk:96,mat:96,def:94,mdf:99,spd:55,
+        trait:{name:"幽特性",desc:"幽系效果"}
     },
     {id:17,name:"花影羚羊",element:["幽","恶"],
         avatar:"/public/images/花影羚羊立绘.png",
-        hp:106,atk:96,mat:96,def:94,mdf:99,spd:55
+        hp:106,atk:96,mat:96,def:94,mdf:99,spd:55,
+        trait:{name:"幽特性",desc:"幽系效果"}
     },
     {id:18,name:"雪绒鸟",element:"翼",
         avatar:"/public/images/雪绒鸟立绘.png",
-        hp:106,atk:96,mat:96,def:94,mdf:99,spd:55
+        hp:106,atk:96,mat:96,def:94,mdf:99,spd:55,
+        trait:{name:"翼特性",desc:"翼系效果"}
     },
     {id:19,name:"冬羽雀",element:"翼",
         avatar:"/public/images/冬羽雀立绘.png",
-        hp:106,atk:96,mat:96,def:94,mdf:99,spd:55
+        hp:106,atk:96,mat:96,def:94,mdf:99,spd:55,
+        trait:{name:"翼特性",desc:"翼系效果"}
     },
-    {id:22,name:"幻灵菇",element:["草","幽"],
-        avatar:"/public/images/幻灵菇立绘.png",
-        hp:89,atk:79,mat:79,def:83,mdf:109,spd:60,
-        trait:{name:"毒蘑菇",desc:"回合结束偷取敌方1能量。"}
-    }
+    {id:20,name:"岚鸟",element:"翼",
+        avatar:"/public/images/岚鸟立绘.png",
+        hp:106,atk:96,mat:96,def:94,mdf:99,spd:55,
+        trait:{name:"翼特性",desc:"翼系效果"}
+    },
 ];

@@ -16,7 +16,7 @@ body {
 }
 
 .small-card {
-    width: 200px;
+    width: flex;
     padding: 16px;
     background: #fff;
     border-radius: 16px;
@@ -32,7 +32,7 @@ body {
 .avatar {
     width: 130px;
     height: 130px;
-    border-radius: 14px;
+    border-radius: 16px;
     object-fit: cover;
     background: #fff;
     display: block;
@@ -49,19 +49,15 @@ body {
 .pet-grid {
     display: flex;
     flex-wrap: wrap;
-    gap: 14px;
+    gap: 16px;
     justify-content: center;
 }
 
 .element {
-    padding: 4px 9px;
-    border-radius: 12px;
+    padding: 4px 12px;
+    border-radius: 16px;
     color: #fff;
-    font-size: 12px;
-    font-weight: 500;
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
+    font-size: 14px;
 }
 
 .element-icon {
@@ -96,14 +92,9 @@ body {
 }
 
 .filter-icon {
-  background: #fff;
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
   object-fit: contain;
-  /* 关键：让图标自己也居中 */
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .filter-btn:hover {
