@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>宠物详情</title>
+<link rel="stylesheet" href="style.css">
+
+<script src="data/config.js"></script>
+<script src="data/pets1.js"></script>
+<script src="data/pets2.js"></script>
+
+<div class="page-container">
+  <button class="back-btn" onclick="history.back()">← 返回图鉴</button>
+  <div id="detailArea" class="detail-card"></div>
+</div>
+
+<script>
+const petList = [...petList1, ...petList2];
+const params = new URLSearchParams(location.search);
+const id = parseInt(params.get("id"));
+const pet = petList.find(p => p.id === id);
+
+if (pet) {
+  const elems = Array.isArray(pet.element) ? pet.element : [pet.element];
+  const bg = elems.length === 1 ? elementColors[elems[0]] : `linear-gradient(135deg, ${elementColors[elems[0]]}, ${elementColors[elems[1]]})`;
+
+  document.getElementById("detailArea").innerHTML = `
+    <div class="pet-layout">
+      <div class="left-section">
+        <div class="avatar-box" style="background:${bg}">
+          <img class="avatar" src="${pet.avatar}" alt="${pet.name}">
+        </div>
+        <div class="name-row">
+          <h2 class="pet-name">${pet.name}</h2>
+          ${elems.map(e => `
+            <span class="element" style="background:${elementColors[e]}">
+            <img src="public/icons/${e}.png" class="element-icon">${e}
+            </span>
+            `).join('')}
+        </div>
+        <div class="trait-box">
+          <div class="trait-text">
+            <div class="trait-name">${pet.trait?.name || '无特性'}</div>
+            <div class="trait-desc">${pet.trait?.desc || ''}</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="right-section">
+        <h3>种族值</h3>
+        <div class="stat-grid">
+          <div class="stat">血量 ${pet.hp}</div>
+          <div class="stat">攻击 ${pet.atk}</div>
+          <div class="stat">魔攻 ${pet.mat}</div>
+          <div class="stat">防御 ${pet.def}</div>
+          <div class="stat">魔抗 ${pet.mdf}</div>
+          <div class="stat">速度 ${pet.spd}</div>
+        </div>
+
+        <div style="margin-top:24px">
+          <h3>技能</h3>
+          <div class="skill-list">
+            ${(pet.skills || []).map(s => `
+              <div class="skill-item">
+                <div class="skill-info">
+                  <div class="skill-name">${s.name}</div>
+                  <div class="skill-desc">${s.desc}</div>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+} else {
+  document.getElementById("detailArea").innerHTML = "<h2>宠物不存在</h2>";
+}
+</script>

@@ -1,0 +1,241 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: system-ui, sans-serif;
+}
+
+body {
+    background: #f6f6f6;
+}
+
+.page-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.small-card {
+    width: 200px;
+    padding: 16px;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .08);
+    cursor: pointer;
+    transition: .2s;
+}
+
+.small-card:hover {
+    transform: translateY(-4px);
+}
+
+.avatar {
+    width: 130px;
+    height: 130px;
+    border-radius: 14px;
+    object-fit: cover;
+    background: #fff;
+    display: block;
+}
+
+.avatar-box {
+    border-radius: 18px;
+    padding: 5px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, .15);
+    width: fit-content;
+    margin: 0 auto 12px;
+}
+
+.pet-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    justify-content: center;
+}
+
+.element {
+    padding: 4px 9px;
+    border-radius: 12px;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.element-icon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  vertical-align: middle;
+}
+
+.title-center {
+    text-align: center;
+    margin-bottom: 16px;
+}
+
+.filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    margin-bottom: 24px;
+}
+
+.filter-btn {
+    padding: 8px 16px;
+    border-radius: 20px;
+    border: none;
+    background: #f1f1f1;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.filter-icon {
+  background: #fff;
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  /* 关键：让图标自己也居中 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.filter-btn:hover {
+  filter: brightness(1.15);
+  transform: scale(1.04);
+}
+
+.back-btn {
+    padding: 8px 16px;
+    border-radius: 12px;
+    border: none;
+    background: #333;
+    color: #fff;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.detail-card {
+    background: #1a1a1d;
+    color: #fff;
+    padding: 36px;
+    border-radius: 20px;
+    max-width: 860px;
+    margin: 0 auto;
+}
+
+.pet-layout {
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+}
+
+.small-card h3 {
+  text-align: center;
+  width: 100%;
+  margin: 8px 0 4px;
+}
+
+.left-section {
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.right-section {
+    flex: 1;
+}
+
+.right-section h3 {
+    font-size: 18px;
+    margin-bottom: 12px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #444;
+}
+
+.stat-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.stat {
+    background: #2a2a2e;
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.skill-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.skill-item {
+    background: #2a2a2e;
+    padding: 12px;
+    border-radius: 8px;
+}
+
+.skill-name {
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.skill-desc {
+    font-size: 12px;
+    color: #ccc;
+    margin-top: 4px;
+}
+
+.name-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin: 12px 0;
+}
+
+.pet-name {
+    font-size: 24px;
+}
+
+.trait-box {
+    background: #2a2a2e;
+    padding: 12px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.trait-name {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.trait-desc {
+    font-size: 12px;
+    color: #ccc;
+    margin-top: 4px;
+}
+
+@media (max-width: 768px) {
+    .pet-layout {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .stat-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .detail-card {
+        padding: 24px;
+    }
+}

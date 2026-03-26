@@ -1,13 +1,82 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Roco Kingdom</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
-</html>
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>洛克王国宠物图鉴</title>
+<link rel="stylesheet" href="style.css">
+
+<script src="data/config.js"></script>
+<script src="data/pets1.js"></script>
+<script src="data/pets2.js"></script>
+
+<div class="page-container">
+  <div class="title-center"><h1>洛克王国宠物图鉴</h1></div>
+  <div class="filter-bar" id="filterBar"></div>
+  <div class="pet-grid" id="petGrid"></div>
+</div>
+
+<script>
+const petList = [...petList1, ...petList2];
+renderFilters();
+renderPets(petList);
+
+function renderFilters() {
+  const bar = document.getElementById("filterBar");
+  allElements.forEach(el => {
+    const btn = document.createElement("button");
+    btn.className = "filter-btn";
+
+    // 给属性标签加上对应颜色
+    if (el !== "全部" && elementColors[el]) {
+      btn.style.backgroundColor = "#fff";
+      btn.style.color = elementColors[el];
+      btn.style.border = `2px solid ${elementColors[el]}`;
+      // 插入图标
+      btn.innerHTML = `<img src="public/icons/${el}.png" class="filter-icon">${el}`;
+    } else {
+      btn.textContent = el;
+      btn.style.border = `2px solid #ccc`;
+
+    }
+    
+    btn.onclick = () => filterPets(el);
+    bar.appendChild(btn);
+  });
+}
+
+function renderPets(pets) {
+  const grid = document.getElementById("petGrid");
+  grid.innerHTML = "";
+  pets.forEach(pet => {
+    const card = document.createElement("div");
+    card.className = "small-card";
+    const elems = Array.isArray(pet.element) ? pet.element : [pet.element];
+    const bg = elems.length === 1 ? elementColors[elems[0]] : `linear-gradient(135deg, ${elementColors[elems[0]]}, ${elementColors[elems[1]]})`;
+
+    card.innerHTML = `
+    <div class="avatar-box" style="background:${bg}">
+      <img class="avatar" src="${pet.avatar}" alt="${pet.name}">
+    </div>
+    <h3>${pet.name}</h3>
+    <div style="display:flex;gap:4px;justify-content:center;margin-top:6px;flex-wrap:wrap">
+      ${elems.map(e => `
+      <span class="element" style="background:#fff; border:1px solid ${elementColors[e]}; color:#333; display:inline-flex; align-items:center; gap:4px;">
+        <img src="public/icons/${e}.png" class="element-icon" style="width:14px; height:14px; object-fit:contain;">
+        ${e}
+      </span>
+      `).join('')}
+    </div>
+  `;
+    card.onclick = () => location.href = `detail.html?id=${pet.id}`;
+    grid.appendChild(card);
+  });
+}
+
+function filterPets(type) {
+  if (type === "全部") return renderPets(petList);
+  const filtered = petList.filter(p => {
+    const el = p.element;
+    return Array.isArray(el) ? el.includes(type) : el === type;
+  });
+  renderPets(filtered);
+}
+</script>
