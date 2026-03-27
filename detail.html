@@ -12,6 +12,7 @@
 <script src="data/pets1.js"></script>
 <script src="data/pets2.js"></script>
 <script src="data/pets3.js"></script>
+<script src="data/pets4.js"></script>
 
 <div class="page-container">
   <button class="back-btn" onclick="history.back()">← 返回图鉴</button>
@@ -19,14 +20,16 @@
 </div>
 
 <script>
-const petList = [...petList1, ...petList2, ...petList3];
+const petList = [...petList1, ...petList2, ...petList3, ...petList4];
 const params = new URLSearchParams(location.search);
 const id = parseInt(params.get("id"));
 const pet = petList.find(p => p.id === id);
 
 if (pet) {
   const elems = Array.isArray(pet.element) ? pet.element : [pet.element];
-  const bg = elems.length === 1 ? elementColors[elems[0]] : `linear-gradient(135deg, ${elementColors[elems[0]]}, ${elementColors[elems[1]]})`;
+  const bg = elems.length === 1 
+    ? elementColors[elems[0]] 
+    : `linear-gradient(135deg, ${elementColors[elems[0]]}, ${elementColors[elems[1]]})`;
 
   document.getElementById("detailArea").innerHTML = `
     <div class="pet-layout">
@@ -38,12 +41,14 @@ if (pet) {
           <h2 class="pet-name">${pet.name}</h2>
             ${elems.map(e => `
             <span class="element" style="background:#1a1a1d; border:2px solid ${elementColors[e]}; color:#e0e0e0; display:inline-flex; align-items:center; gap:4px;">
-              <img src="public/icons/${e}.png" class="element-icon" ">
+              <img src="public/icons/${e}.png" class="element-icon">
               ${e}
             </span>
             `).join('')}
         </div>
-        <div class="trait-box">
+
+        <div class="trait-box" style="display:flex; align-items:center; gap:12px;">
+          <img src="public/traits/${pet.trait?.name || 'default'}.png" class="trait-icon" alt="特性图标">
           <div class="trait-text">
             <div class="trait-name">${pet.trait?.name || '无特性'}</div>
             <div class="trait-desc">${pet.trait?.desc || ''}</div>
@@ -61,20 +66,28 @@ if (pet) {
           <div class="stat">魔抗 ${pet.mdf}</div>
           <div class="stat">速度 ${pet.spd}</div>
         </div>
+      </div>
 
-        <div style="margin-top:24px">
-          <h3>技能</h3>
-          <div class="skill-list">
-            ${(pet.skills || []).map(s => `
-              <div class="skill-item">
-                <div class="skill-info">
-                  <div class="skill-name">${s.name}</div>
-                  <div class="skill-desc">${s.desc}</div>
-                </div>
+    </div> <!-- 👈 这个闭合标签必须在技能区域的前面！ -->
+
+    <!-- 👇 技能区域放在这里，才会在下半界面！ -->
+    <div class="middle-section">
+      <h3>技能</h3>
+      <div class="skills-grid">
+          ${(pet.skills || []).map(s => `
+            <div class="skill-item" style="display:flex; align-items:center; gap:10px;">
+              <img src="public/skills/${s.type}/${s.name}.png" class="skill-icon">
+              <div class="skill-info">
+                <div class="skill-name">${s.name}</div>
+                ${s.desc ? `<div style="font-size:13px;color:#ccc;margin-top:4px;">${s.desc}</div>` : ''}
+                <div class="skill-desc" style="display:flex; gap:12px; margin-top:4px;">
+                  <span>属性：${s.type || '-'}</span>
+                  <span>威力：${s.power || '0'}</span>
+                  <span>能量消耗：${s.cost || '0'} </span>
+                </div>                
               </div>
-            `).join('')}
-          </div>
-        </div>
+            </div>
+          `).join('')}
       </div>
     </div>
   `;
