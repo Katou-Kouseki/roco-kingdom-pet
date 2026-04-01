@@ -134,7 +134,14 @@ body {
 .small-card h3 {
   text-align: center;
   width: 100%;
-  margin: 8px 0 4px;
+  margin: 4px 0 4px;
+}
+
+.small-card h4 {
+  font-size: 14px;
+  color: #666;
+  text-align: center;
+  width: 100%;
 }
 
 .left-section {

@@ -19,6 +19,11 @@
 <script src="data/pets8.js"></script>
 <script src="data/pets9.js"></script>
 <script src="data/pets10.js"></script>
+<script src="data/pets11.js"></script>
+<script src="data/pets12.js"></script>
+<script src="data/pets13.js"></script>
+<script src="data/pets14.js"></script>
+<script src="data/pets15.js"></script>
 
 
 <div class="page-container">
@@ -27,7 +32,9 @@
 </div>
 
 <script>
-const petList = [...petList1, ...petList2, ...petList3, ...petList4, ...petList5, ...petList6, ...petList7, ...petList8, ...petList9, ...petList10];
+const petList = [...petList1, ...petList2, ...petList3, ...petList4, ...petList5, ...petList6, ...petList7, ...petList8, ...petList9, ...petList10,
+  ...petList11, ...petList12, ...petList13, ...petList14, ...petList15
+];
 const params = new URLSearchParams(location.search);
 const id = parseInt(params.get("id"));
 const pet = petList.find(p => p.id === id);

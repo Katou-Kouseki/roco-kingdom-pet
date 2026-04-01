@@ -19,6 +19,11 @@
 <script src="data/pets8.js"></script>
 <script src="data/pets9.js"></script>
 <script src="data/pets10.js"></script>
+<script src="data/pets11.js"></script>
+<script src="data/pets12.js"></script>
+<script src="data/pets13.js"></script>
+<script src="data/pets14.js"></script>
+<script src="data/pets15.js"></script>
 
 
 <div class="page-container">
@@ -28,7 +33,9 @@
 </div>
 
 <script>
-const petList = [...petList1, ...petList2, ...petList3, ...petList4, ...petList5, ...petList6, ...petList7, ...petList8, ...petList9, ...petList10];
+const petList = [...petList1, ...petList2, ...petList3, ...petList4, ...petList5, ...petList6, ...petList7, ...petList8, ...petList9, ...petList10,
+  ...petList11, ...petList12, ...petList13, ...petList14, ...petList15
+];
 renderFilters();
 renderPets(petList);
 
@@ -69,6 +76,7 @@ function renderPets(pets) {
     <div class="avatar-box" style="background:${bg}">
       <img class="avatar" src="public/images/${pet.id}.png" alt="${pet.name}">
     </div>
+    <h4>编号 #${pet.id}</h4>
     <h3>${pet.name}</h3>
     <div style="display:flex;gap:4px;justify-content:center;margin-top:6px;flex-wrap:wrap">
       ${elems.map(e => `
