@@ -103,7 +103,7 @@ const petList19 = [
             desc:"自己获得全技能能耗-2，应对防御：改为技能能耗-3。"}
         ]
     },
-    {id:184,name:"圆号鱼",element:["水翼"],
+    {id:184,name:"圆号鱼",element:["水"],
         avatar:"/public/images/184.png",
         hp:136,atk:34,mat:95,def:95,mdf:110,spd:105,
         trait:{name:"泛音列",desc:"使用状态技能后，敌方获得【聒噪】技能的效果，持续3回合。"},
