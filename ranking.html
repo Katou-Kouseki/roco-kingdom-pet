@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>宠物种族值排行榜</title>
+  <!-- 引入外部CSS -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- favicon 小图标 -->
+  <link rel="icon" href="public/leologo/leo_favicon.png" type="image/png">
+  <link rel="shortcut icon" href="public/leologo/leo_favicon.png" type="image/png">
+</head>
+
+<body>
+
+<!-- 顶部导航 -->
+<div class="top-bar">
+  <h1> 洛克王国：世界 种族值</h1>
+  <div class="top-menu">
+    <button class="top-menu-btn" onclick="location.href='index.html'">
+      <img src="public/leologo/pet_icon.png" class="menu-icon" alt="图鉴">
+      宠物图鉴
+    </button>
+    <button class="top-menu-btn" onclick="location.href='weakness.html'">
+       <img src="public/leologo/element_icon.png" class="menu-icon">
+       属性克制
+    </button>
+    <button class="top-menu-btn" onclick="location.href='ranking.html'">
+      <img src="public/leologo/ranking_icon.png" class="menu-icon">
+      种族值
+    </button>
+  </div>
+</div>
+
+<!-- 属性筛选栏 -->
+<div class="page-container">
+  <div class="filter-bar" id="filterBar"></div>
+
+<!-- 表格内容 -->
+<div class="table-container">
+  <table id="petTable">
+    <thead>
+      <tr>
+        <th onclick="sortBy('id')">编号 <span class="sort-arrow" id="arr-id"></span></th>
+        <th>头像</th>
+        <th>名称</th>
+        <th>属性</th>
+        <th onclick="sortBy('hp')">生命 <span class="sort-arrow" id="arr-hp"></span></th>
+        <th onclick="sortBy('atk')">攻击 <span class="sort-arrow" id="arr-atk"></span></th>
+        <th onclick="sortBy('mat')">魔攻 <span class="sort-arrow" id="arr-mat"></span></th>
+        <th onclick="sortBy('def')">防御 <span class="sort-arrow" id="arr-def"></span></th>
+        <th onclick="sortBy('mdf')">魔抗 <span class="sort-arrow" id="arr-mdf"></span></th>
+        <th onclick="sortBy('spd')">速度 <span class="sort-arrow" id="arr-spd"></span></th>
+        <th onclick="sortBy('total')">总值 <span class="sort-arrow" id="arr-total"></span></th>
+      </tr>
+    </thead>
+    <tbody id="tableBody"></tbody>
+  </table>
+</div>
+
+<!-- 返回顶部 -->
+<button id="backToTop" onclick="scrollToTop()">↑</button>
+
+<script src="/data/load-pets.js"></script>
+<script>
+  // 合并所有宠物数据
+  const originalPetList = [
+    ...petList1, ...petList2, ...petList3, ...petList4, ...petList5,
+    ...petList6, ...petList7, ...petList8, ...petList9, ...petList10,
+    ...petList11, ...petList12, ...petList13, ...petList14, ...petList15,
+    ...petList16, ...petList17, ...petList18, ...petList19, ...petList20,
+    ...petList21, ...petList22, ...petList23, ...petList24, ...petList25,
+    ...petList26, ...petList27, ...petList28, ...petList29, ...petList30,
+    ...petList31, ...petList32, ...petList33, ...petList34, ...petList35,
+  ];
+
+  // 当前显示的列表（筛选后）
+  let petList = [...originalPetList];
+  // 当前排序配置
+  let currentSort = { key: 'id', order: 'asc' };
+
+  // 计算总种族值
+  function getTotal(pet) {
+    return (pet.hp||0) + (pet.atk||0) + (pet.mat||0) + (pet.def||0) + (pet.mdf||0) + (pet.spd||0);
+  }
+
+  // 渲染属性筛选按钮
+  function renderFilters() {
+    const bar = document.getElementById("filterBar");
+    bar.innerHTML = "";
+
+    allElements.forEach(el => {
+      const btn = document.createElement("button");
+      btn.className = "filter-btn";
+
+      if (el !== "全部" && elementColors[el]) {
+        btn.style.backgroundColor = "#fff";
+        btn.style.color = elementColors[el];
+        btn.style.border = `2px solid ${elementColors[el]}`;
+        btn.innerHTML = `<img src="public/icons/${el}.png" class="filter-icon">${el}`;
+      } else {
+        btn.textContent = el;
+        btn.style.border = `2px solid #ccc`;
+      }
+
+      btn.onclick = () => {
+        document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        filterByElement(el);
+      };
+
+      bar.appendChild(btn);
+    });
+  }
+
+  // 属性筛选逻辑
+  function filterByElement(type) {
+    if (type === "全部") {
+      petList = [...originalPetList];
+    } else {
+      petList = originalPetList.filter(p => {
+        const el = p.element;
+        return Array.isArray(el) ? el.includes(type) : el === type;
+      });
+    }
+    // 筛选后重新排序
+    sortBy(currentSort.key,true);
+  }
+
+  // 渲染表格
+  function renderTable() {
+    const tbody = document.getElementById('tableBody');
+    tbody.innerHTML = '';
+
+    petList.forEach(pet => {
+      const tr = document.createElement('tr');
+      const elems = Array.isArray(pet.element) ? pet.element : [pet.element];
+      const elemHtml = elems.map(e => `<span class="element-tag">${e}</span>`).join('');
+
+      tr.innerHTML = `
+        <td>#${pet.id}</td>
+        <td><img src="public/images/${pet.id}.png" class="pet-avatar"></td>
+        <td>${pet.name}</td>
+        <td>${elemHtml}</td>
+        <td>${pet.hp || 0}</td>
+        <td>${pet.atk || 0}</td>
+        <td>${pet.mat || 0}</td>
+        <td>${pet.def || 0}</td>
+        <td>${pet.mdf || 0}</td>
+        <td>${pet.spd || 0}</td>
+        <td><strong>${getTotal(pet)}</strong></td>
+      `;
+      tbody.appendChild(tr);
+    });
+  }
+
+  // 排序功能
+  function sortBy(key, isRefresh = false) {
+  // 如果不是刷新（即：手动点击表头），则切换排序方向
+    if (!isRefresh) {
+      if (currentSort.key === key) {
+        currentSort.order = currentSort.order === 'asc' ? 'desc' : 'asc';
+      } else {
+        currentSort.key = key;
+        currentSort.order = key === 'id' ? 'asc' : 'desc';
+      }
+    }
+    // 如果是刷新（isRefresh 为 true），则跳过上面的逻辑，直接按现有的 key 和 order 排序
+
+    petList.sort((a, b) => {
+      let valA, valB;
+      if(key === 'total'){
+        valA = getTotal(a);
+        valB = getTotal(b);
+      } else {
+        valA = a[key] || 0;
+        valB = b[key] || 0;
+      }
+      return currentSort.order === 'asc' ? valA - valB : valB - valA;
+    });
+
+    // 更新箭头显示
+    document.querySelectorAll('.sort-arrow').forEach(el => el.textContent = '');
+    const arrow = currentSort.order === 'asc' ? '↑' : '↓';
+    const arrowEl = document.getElementById(`arr-${key}`);
+    if (arrowEl) arrowEl.textContent = arrow;
+
+    renderTable();
+  }
+
+  function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  window.onscroll = () => {
+    const btn = document.getElementById('backToTop');
+    btn.style.display = window.scrollY > 300 ? 'block' : 'none';
+  };
+
+  // 默认按编号升序排列
+  window.onload = () => {
+    renderFilters();
+    currentSort.key = '';
+    sortBy('id');
+  };
+</script>
+
+</body>
+</html>

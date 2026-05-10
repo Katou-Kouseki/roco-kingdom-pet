@@ -25,6 +25,10 @@
     <button class="top-menu-btn" onclick="location.href='weakness.html'">
        <img src="public/leologo/element_icon.png" class="menu-icon">属性克制
     </button>
+    <button class="top-menu-btn" onclick="location.href='ranking.html'">
+      <img src="public/leologo/ranking_icon.png" class="menu-icon">
+      种族值
+    </button>
   </div>
 </div>
 
@@ -36,12 +40,19 @@
   </div>
 </div>
 
-<script src="load-pets.js"></script>
+<!-- 返回顶部按钮 -->
+<button id="backToTop" onclick="scrollToTop()">↑</button>
+
+<script src="/data/load-pets.js"></script>
 
 <script>
-const petList = [...petList1, ...petList2, ...petList3, ...petList4, ...petList5, ...petList6, ...petList7, ...petList8, ...petList9, ...petList10,
-  ...petList11, ...petList12, ...petList13, ...petList14, ...petList15, ...petList16, ...petList17, ...petList18, ...petList19, ...petList20,
-  ...petList21, ...petList22, ...petList23, ...petList24, ...petList25, ...petList26, ...petList27, ...petList28, ...petList29, ...petList30,
+const petList = [...petList1, ...petList2, ...petList3, ...petList4, ...petList5, 
+...petList6, ...petList7, ...petList8, ...petList9, ...petList10,
+...petList11, ...petList12, ...petList13, ...petList14, ...petList15, 
+...petList16, ...petList17, ...petList18, ...petList19, ...petList20,
+...petList21, ...petList22, ...petList23, ...petList24, ...petList25, 
+...petList26, ...petList27, ...petList28, ...petList29, ...petList30,
+...petList31, ...petList32, ...petList33, ...petList34, ...petList35,
 ];
 renderFilters();
 renderPets(petList);
@@ -116,6 +127,22 @@ function filterPets(type) {
   });
   renderPets(filtered);
 }
+
+// ========== 返回顶部功能 ==========
+function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+// 滚动时显示/隐藏按钮
+window.onscroll = function() {
+  const btn = document.getElementById("backToTop");
+  if (document.documentElement.scrollTop > 300) {
+    btn.style.display = "block";
+  } else {
+    btn.style.display = "none";
+  }
+};
+
 </script>
 
 <!-- 版权声明 -->

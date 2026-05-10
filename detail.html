@@ -13,7 +13,7 @@
 </head>
 <body>
 
-<script src="load-pets.js"></script>
+<script src="/data/load-pets.js"></script>
 
 <div class="page-container">
   <button class="back-btn" onclick="history.back()">← 返回图鉴</button>
@@ -21,9 +21,13 @@
 </div>
 
 <script>
-const petList = [...petList1, ...petList2, ...petList3, ...petList4, ...petList5, ...petList6, ...petList7, ...petList8, ...petList9, ...petList10,
-  ...petList11, ...petList12, ...petList13, ...petList14, ...petList15, ...petList16, ...petList17, ...petList18, ...petList19, ...petList20,
-  ...petList21, ...petList22, ...petList23, ...petList24, ...petList25, ...petList26, ...petList27, ...petList28, ...petList29, ...petList30,
+const petList = [...petList1, ...petList2, ...petList3, ...petList4, ...petList5,
+ ...petList6, ...petList7, ...petList8, ...petList9, ...petList10,
+ ...petList11, ...petList12, ...petList13, ...petList14, ...petList15,
+ ...petList16, ...petList17, ...petList18, ...petList19, ...petList20,
+ ...petList21, ...petList22, ...petList23, ...petList24, ...petList25,
+ ...petList26, ...petList27, ...petList28, ...petList29, ...petList30,
+ ...petList31, ...petList32, ...petList33, ...petList34, ...petList35,
 ];
 const params = new URLSearchParams(location.search);
 const id = parseInt(params.get("id"));
@@ -44,7 +48,10 @@ if (pet) {
         <div class="name-row">
           <h2 class="pet-name">${pet.name}</h2>
             ${elems.map(e => `
-            <span class="element" style="background:#1a1a1d; border:2px solid ${elementColors[e]}; color:#e0e0e0; display:inline-flex; align-items:center; gap:4px;">
+            <span class="element" style="background:#1a1a1d; 
+            border:2px solid ${elementColors[e]}; color:#e0e0e0; 
+            display:inline-flex; align-items:center; gap:4px;"
+            >
               <img src="public/icons/${e}.png" class="element-icon">
               ${e}
             </span>

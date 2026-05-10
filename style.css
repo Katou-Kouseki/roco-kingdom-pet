@@ -79,6 +79,28 @@ body {
     overflow: auto;
 }
 
+#backToTop {
+      position: fixed;
+      bottom: 30px;
+      right: 20px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: #409eff;
+      color: white;
+      font-size: 18px;
+      border: none;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+      cursor: pointer;
+      display: none; /* 默认隐藏 */
+      z-index: 9999;
+      transition: all 0.3s ease;
+    }
+    
+#backToTop:hover {
+    background-color: #337ecc;
+    transform: scale(1.1);
+}
 /* ====================================== */
 /* 宠物卡片样式 */
 /* ====================================== */
@@ -260,6 +282,11 @@ body {
     justify-content: center;
     gap: 10px;
     margin: 12px 0;
+}
+
+.detail-card .avatar {
+    width: 175px;
+    height: 175px;
 }
 
 .pet-name {
@@ -561,6 +588,71 @@ body {
 /* 绿色箭头头 */
 .arrow-head.not-effective {
   border-top: 10px solid #4cd964;
+}
+
+/* ====================================== */
+/* 宠物种族值排行榜 专用样式（新增）*/
+/* ====================================== */
+.table-container {
+  width: 96%;
+  max-width: 1400px;
+  margin: 20px auto;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead {
+  background: #f5f7fa;
+}
+
+th {
+  padding: 12px 8px;
+  text-align: center;
+  font-weight: bold;
+  color: #333;
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+}
+
+th:hover {
+  background: #e8f3ff;
+}
+
+td {
+  padding: 10px 8px;
+  text-align: center;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.pet-avatar {
+  width: 46px;
+  height: 46px;
+  object-fit: contain;
+  vertical-align: middle;
+}
+
+.element-tag {
+  display: inline-block;
+  padding: 3px 6px;
+  border-radius: 6px;
+  font-size: 12px;
+  margin: 2px;
+  border: 1px solid #ddd;
+  background: #fdfdfd;
+}
+
+.sort-arrow {
+  font-size: 12px;
+  margin-left: 4px;
+  color: #888;
 }
 
 /* ====================================== */
